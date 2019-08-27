@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ $# -ne 3 ]; then
+        echo "Usage: ./deleteBridge [Bridge Name] [Bridge IPaddr] [NIC Name]"
+        exit 1
+fi
+
+
+BRCTL=/sbin/brctl
+IP=/sbin/ip
+
+
+BRIDGE=$1
+IP_ADDRESS=$2
+NICS=$3
+
+$IP link set dev $BRIDGE down
+$IP link set dev $NIC down
+$IP addr flush dev $NIC
+$BRCTL delbr $BRIDGE $NIC

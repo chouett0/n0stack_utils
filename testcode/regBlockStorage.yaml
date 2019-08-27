@@ -1,0 +1,8 @@
+RegisterBlockStorage:
+  type: Image
+  action: RegisterBlockStorage
+  args:
+    image_name: cloudimage-ubuntu
+    block_storage_name: cloudimage-ubuntu-1804
+    tags:
+      - "1804"

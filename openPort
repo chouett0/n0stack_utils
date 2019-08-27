@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ $# -ne 4 ]; then
+	echo "Usage: ./openPort [VM IP] [Gateway IP] [External Port] [Original Port]"
+	exit 1
+fi
+
+VMIP=$1
+GWIP=$2
+ExPort=$3
+OrgPort=$4
+
+iptables -t nat -A PREROUTING -m tcp -p tcp --dst 172.208.10.97 --dport $ExPort -j DNAT --to-destination $VMIP:$OrgPort
+iptables -t nat -A POSTROUTING -m tcp -p tcp --dst $VMIP --dport $OrgPort -j SNAT --to-source $GWIP
+iptables -A FORWARD -m tcp -p tcp --dst $VMIP --dport $OrgPort -j ACCEPT
+iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT

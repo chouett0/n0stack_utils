@@ -1,0 +1,11 @@
+FetchISO:
+  type: BlockStorage
+  action: FetchBlockStorage
+  args:
+    name: cloudimage-ubuntu-1804
+    annotations:
+      n0core/provisioning/block_storage/request_node_name: delia
+    request_bytes: 1073741824 # 1GiB
+    limit_bytes: 10737418240 # 10GiB
+#    source_url: file:///root/bionic-server-cloudimg-amd64.img
+    source_url: https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img

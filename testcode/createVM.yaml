@@ -1,0 +1,21 @@
+CreateVirtualMachine:
+  type: VirtualMachine
+  action: CreateVirtualMachine
+  args:
+    name: test-vm
+    annotations:
+      n0core/provisioning/virtual_machine/request_node_name: delia
+    request_cpu_milli_core: 10
+    limit_cpu_milli_core: 1000
+    request_memory_bytes: 536870912
+    limit_memory_bytes: 536870912
+    block_storage_names:
+      - test-e2337c6089c7155a04cd
+    nics:
+      - network_name: test-network
+        ipv4_address: 192.168.200.1
+    uuid: 95974848-6d5a-4639-bb83-6977b6196e92
+    # cloud-config related options:
+    login_username: n0user
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqPUNYdh2QhpR5dGpd96J9NrYZHp0ksjlEGyYFk9NliK6tgkKK+x8m1QsqeKeLV7UoM2hDM7E/If34vdMe4IqqzHh/ecNXZZokHL+/Xlm1XBP35RhGzoKu24kNpTKhZ7ZHgqFh+j4+Ej6lRnmlcWFKs39JF0Ne+Ksl2Jx4rs1N+W/k0cTOeAQ+ju2w3mM+yKJlQPDrdY8IB/5pWvlT+EozdZ5z9d3PqCYcd4UwvIk6t/BeAOOGsFf/enP0ry6MkeCeG8/kTa03W0KCYSZtwx01NRKjwdwWJ/VYMzSB1Ue4GPxIS+xWbqcv54aWkNXe/ldcU+L8/VP+Mx1B7vhg42El testkey

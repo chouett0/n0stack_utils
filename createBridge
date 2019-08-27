@@ -1,0 +1,32 @@
+#!/bin/bash
+
+if [ $# -ne 3 ]; then
+        echo "Usage: ./createBridge [Bridge Name] [Bridge IPaddr] [NIC Name]"
+        exit 1
+fi
+
+
+BRCTL=/sbin/brctl
+IP=/sbin/ip
+
+
+BRIDGE=$1
+IP_ADDRESS=$2
+NICS=$3
+
+
+$BRCTL addbr $BRIDGE
+$BRCTL stp $BRIDGE off
+$IP addr  add $IP_ADDRESS dev $BRIDGE
+
+for NIC in $NICS
+
+do
+    $IP addr flush dev $NIC
+    $BRCTL addif $BRIDGE $NIC
+    $IP link set dev $NIC promisc on
+    $IP link set dev $NIC up
+done
+
+
+$IP link set dev $BRIDGE up

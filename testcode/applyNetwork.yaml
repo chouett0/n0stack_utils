@@ -1,0 +1,8 @@
+ApplyNetwork:
+  type: Network
+  action: ApplyNetwork
+  args:
+    name: test-network
+    ipv4_cidr: 192.168.200.0/24
+    annotations:
+      n0core/provisioning/virtual_machine/vlan_id: "100"

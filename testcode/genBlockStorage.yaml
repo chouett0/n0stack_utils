@@ -1,0 +1,11 @@
+GenerateBlockStorage:
+  type: Image
+  action: GenerateBlockStorage
+  args:
+    image_name: cloudimage-ubuntu
+    tag: "1804"
+    block_storage_name: test-e2337c6089c7155a04cd
+    annotations:
+      n0core/provisioning/block_storage/request_node_name: delia
+    request_bytes: 1073741824
+    limit_bytes: 10737418240
