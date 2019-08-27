@@ -1,0 +1,17 @@
+#!/bin/bash
+if [ $# -ne 3 ]; then
+   echo "Usage: ./createBridge [VM NetworkName] [Gateway IPaddr/prefix] [Network IPaddr/prefix]"
+	exit 1
+fi
+
+
+VM_NET=$1
+GWIP=$2
+NET=$3
+
+iptables -A FORWARD -i $VM_NET -o $VM_NET -j ACCEPT
+iptables -t nat -F
+iptables -A FORWARD -i $VM_NET -o br0 -s $GWIP -j ACCEPT
+iptables -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
+iptables -t nat -A POSTROUTING -o br0 -s $NET -j MASQUERADE
+
